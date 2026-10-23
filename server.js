@@ -19,5 +19,7 @@ app.post("/api/chat",async(req,res)=>{
   res.json({reply:data?.choices?.[0]?.message?.content||"The AI returned an empty response."});
  } catch(e){console.error(e);res.status(500).json({error:"Could not reach the AI service. Check internet and API settings."});}
 });
-app.get("*",(_req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 app.listen(PORT,()=>console.log(`HQ by CHS running at http://localhost:${PORT}`));
